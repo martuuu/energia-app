@@ -1,0 +1,42 @@
+/* 
+  Este archivo fuerza a Tailwind a incluir nuestras clases personalizadas
+  No se importa en ningún lugar, solo sirve para que Tailwind las detecte
+*/
+
+/* Colores de fondo */
+.bg-team-blue { background-color: #2563eb; }
+.bg-team-orange { background-color: #f97316; }
+.bg-team-blue-dark { background-color: #1d4ed8; }
+.bg-team-orange-light { background-color: #fb923c; }
+.bg-team-blue-pastel { background-color: #a7c7ff; }
+.bg-team-orange-pastel { background-color: #ffd4a7; }
+.bg-cream-white { background-color: #faf9f6; }
+
+/* Colores de texto */
+.text-team-blue { color: #2563eb; }
+.text-team-orange { color: #f97316; }
+.text-team-blue-dark { color: #1d4ed8; }
+.text-team-orange-light { color: #fb923c; }
+.text-team-blue-pastel { color: #a7c7ff; }
+.text-team-orange-pastel { color: #ffd4a7; }
+
+/* Colores de borde */
+.border-team-blue { border-color: #2563eb; }
+.border-team-orange { border-color: #f97316; }
+.border-team-blue-dark { border-color: #1d4ed8; }
+.border-team-orange-light { border-color: #fb923c; }
+.border-team-blue-pastel { border-color: #a7c7ff; }
+.border-team-orange-pastel { border-color: #ffd4a7; }
+
+/* Hover estados */
+.hover\:bg-team-blue:hover { background-color: #2563eb; }
+.hover\:bg-team-orange:hover { background-color: #f97316; }
+.hover\:bg-team-blue-dark:hover { background-color: #1d4ed8; }
+.hover\:bg-team-orange-light:hover { background-color: #fb923c; }
+.hover\:bg-team-blue-pastel:hover { background-color: #a7c7ff; }
+.hover\:bg-team-orange-pastel:hover { background-color: #ffd4a7; }
+
+.hover\:text-team-blue:hover { color: #2563eb; }
+.hover\:text-team-orange:hover { color: #f97316; }
+.hover\:text-team-blue-dark:hover { color: #1d4ed8; }
+.hover\:text-team-orange-light:hover { color: #fb923c; }

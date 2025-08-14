@@ -1,9 +1,9 @@
 import { AppLayout } from '@/components/common/AppLayout'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Calendar, MapPin, Users } from 'lucide-react'
 import { SPORT_CATEGORIES, SPORT_LABELS } from '@/constants'
+import Image from 'next/image'
 
 // Mock data para eventos
 const mockEvents = [
@@ -18,6 +18,7 @@ const mockEvents = [
     currentParticipants: 12450,
     status: 'upcoming',
     registrationDeadline: '2024-04-10',
+    image: '/images/runner-road.webp',
   },
   {
     id: '2',
@@ -30,6 +31,7 @@ const mockEvents = [
     currentParticipants: 180,
     status: 'upcoming',
     registrationDeadline: '2024-03-10',
+    image: '/images/la-plata.png',
   },
   {
     id: '3',
@@ -42,6 +44,7 @@ const mockEvents = [
     currentParticipants: 350,
     status: 'upcoming',
     registrationDeadline: '2024-05-01',
+    image: '/images/mardel.png',
   },
   {
     id: '4',
@@ -54,36 +57,37 @@ const mockEvents = [
     currentParticipants: 850,
     status: 'completed',
     registrationDeadline: '2024-02-15',
+    image: '/images/mardel.png',
   },
 ]
 
 const getCategoryColor = (category: string) => {
   switch (category) {
     case SPORT_CATEGORIES.RUNNING:
-      return 'bg-team-blue text-white'
+      return 'bg-team-blue text-cream-white'
     case SPORT_CATEGORIES.SWIMMING:
-      return 'bg-team-orange text-white'
+      return 'bg-team-orange text-cream-white'
     case SPORT_CATEGORIES.CYCLING:
-      return 'bg-team-blue-dark text-white'
+      return 'bg-team-blue-dark text-cream-white'
     case SPORT_CATEGORIES.TRIATHLON:
-      return 'bg-team-orange-light text-white'
+      return 'bg-team-orange-light text-cream-white'
     default:
-      return 'bg-gray-500 text-white'
+      return 'bg-gray-500 text-cream-white'
   }
 }
 
 const getStatusColor = (status: string) => {
   switch (status) {
     case 'upcoming':
-      return 'bg-green-500 text-white'
+      return 'bg-green-500 text-cream-white'
     case 'ongoing':
-      return 'bg-yellow-500 text-white'
+      return 'bg-yellow-500 text-cream-white'
     case 'completed':
-      return 'bg-gray-500 text-white'
+      return 'bg-gray-500 text-cream-white'
     case 'cancelled':
-      return 'bg-red-500 text-white'
+      return 'bg-red-500 text-cream-white'
     default:
-      return 'bg-gray-500 text-white'
+      return 'bg-gray-500 text-cream-white'
   }
 }
 
@@ -108,10 +112,10 @@ export default function EventsPage() {
       <div className="container mx-auto px-4 py-6">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="mb-4 text-3xl font-bold text-team-blue">
+          <h1 className="mb-4 text-3xl font-bold text-cream-white">
             Eventos Deportivos
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-cream-white">
             Participa en los eventos más emocionantes de cada disciplina
           </p>
         </div>
@@ -130,16 +134,26 @@ export default function EventsPage() {
         </div>
 
         {/* Events Grid */}
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid gap-8 lg:grid-cols-2">
           {mockEvents.map((event) => (
-            <Card
+            <div
               key={event.id}
-              className="overflow-hidden transition-transform hover:scale-105 hover:shadow-lg"
+              className="bg-cream-white border-none shadow-lg overflow-hidden transition-all duration-200 hover:shadow-xl hover:scale-[1.02] rounded-lg"
             >
-              <div className="h-32 bg-gradient-to-br from-team-blue-pastel to-team-orange-pastel" />
+              {/* Imagen pegada al borde superior */}
+              <div className="relative h-48 w-full">
+                <Image
+                  src={event.image}
+                  alt={event.title}
+                  fill
+                  className="object-cover rounded-t-lg"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+              </div>
               
-              <CardHeader className="pb-3">
-                <div className="mb-2 flex items-center justify-between">
+              {/* Contenido con padding normal */}
+              <div className="p-6">
+                <div className="mb-3 flex items-center justify-between">
                   <Badge className={getCategoryColor(event.category)}>
                     {SPORT_LABELS[event.category as keyof typeof SPORT_LABELS]}
                   </Badge>
@@ -147,12 +161,9 @@ export default function EventsPage() {
                     {getStatusLabel(event.status)}
                   </Badge>
                 </div>
-                <CardTitle className="text-xl text-team-blue-dark">
+                <h3 className="mb-3 text-xl font-semibold text-gray-800">
                   {event.title}
-                </CardTitle>
-              </CardHeader>
-              
-              <CardContent className="pt-0">
+                </h3>
                 <p className="mb-4 text-sm text-gray-600">
                   {event.description}
                 </p>
@@ -209,14 +220,14 @@ export default function EventsPage() {
                     {event.status === 'completed' ? 'Finalizado' : 'Inscribirse'}
                   </Button>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ))}
         </div>
 
         {/* Load More */}
         <div className="mt-8 text-center">
-          <Button variant="outline" className="border-team-blue text-team-blue hover:bg-team-blue hover:text-white">
+          <Button variant="outline" className="border-team-orange text-team-orange hover:bg-team-orange hover:text-cream-white">
             Ver más eventos
           </Button>
         </div>

@@ -14,6 +14,13 @@ export const SPORT_LABELS = {
   [SPORT_CATEGORIES.TRIATHLON]: 'Triatlón',
 } as const
 
+export const SPORT_ICONS = {
+  [SPORT_CATEGORIES.RUNNING]: '🏃‍♂️',
+  [SPORT_CATEGORIES.SWIMMING]: '🏊‍♂️',
+  [SPORT_CATEGORIES.CYCLING]: '🚴‍♂️',
+  [SPORT_CATEGORIES.TRIATHLON]: '🏆',
+} as const
+
 export const MEMBERSHIP_TYPES = {
   FREE: 'free',
   BASIC: 'basic',

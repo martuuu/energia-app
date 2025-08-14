@@ -97,28 +97,28 @@ export default function ContactPage() {
       <div className="container mx-auto px-4 py-6">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="mb-4 text-3xl font-bold text-team-blue">
+          <h1 className="mb-4 text-3xl font-bold text-cream-white">
             Contacto
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-cream-white">
             Estamos aquí para ayudarte. Ponte en contacto con nosotros.
           </p>
         </div>
 
         {/* Main Contact Info */}
-        <div className="mb-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mb-8 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {contactInfo.map((info, index) => {
             const IconComponent = info.icon
             return (
-              <Card key={index} className="text-center transition-transform hover:scale-105">
+              <Card key={index} className="bg-cream-white border-none shadow-lg text-center transition-all duration-200 hover:shadow-xl hover:scale-[1.02]">
                 <CardContent className="pt-6">
-                  <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-team-blue-pastel">
-                    <IconComponent className="h-6 w-6 text-team-blue" />
+                  <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-team-orange/10">
+                    <IconComponent className="h-6 w-6 text-team-orange" />
                   </div>
-                  <h3 className="mb-2 font-semibold text-team-blue-dark">
+                  <h3 className="mb-2 font-semibold text-gray-800">
                     {info.title}
                   </h3>
-                  <p className="mb-1 font-medium text-gray-800">
+                  <p className="mb-1 font-medium text-team-orange-dark">
                     {info.value}
                   </p>
                   <p className="text-sm text-gray-600">
@@ -132,9 +132,9 @@ export default function ContactPage() {
 
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Contact Form */}
-          <Card>
+          <Card className="bg-cream-white border-none shadow-lg">
             <CardHeader>
-              <CardTitle className="flex items-center text-team-blue">
+              <CardTitle className="flex items-center text-gray-800">
                 <MessageSquare className="mr-2 h-5 w-5" />
                 Envíanos un mensaje
               </CardTitle>
@@ -143,32 +143,32 @@ export default function ContactPage() {
               <form className="space-y-4">
                 <div className="grid gap-4 md:grid-cols-2">
                   <div>
-                    <label className="mb-1 block text-sm font-medium text-gray-700">
+                    <label className="mb-1 block text-sm font-medium text-gray-800">
                       Nombre
                     </label>
                     <input
                       type="text"
-                      className="w-full rounded-md border border-gray-300 px-3 py-2 focus:border-team-blue focus:outline-none focus:ring-1 focus:ring-team-blue"
+                      className="w-full rounded-md border border-team-orange/30 bg-team-orange/5 px-3 py-2 focus:border-team-orange focus:outline-none focus:ring-1 focus:ring-team-orange"
                       placeholder="Tu nombre"
                     />
                   </div>
                   <div>
-                    <label className="mb-1 block text-sm font-medium text-gray-700">
+                    <label className="mb-1 block text-sm font-medium text-gray-800">
                       Email
                     </label>
                     <input
                       type="email"
-                      className="w-full rounded-md border border-gray-300 px-3 py-2 focus:border-team-blue focus:outline-none focus:ring-1 focus:ring-team-blue"
+                      className="w-full rounded-md border border-team-orange/30 bg-team-orange/5 px-3 py-2 focus:border-team-orange focus:outline-none focus:ring-1 focus:ring-team-orange"
                       placeholder="tu@email.com"
                     />
                   </div>
                 </div>
                 
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-gray-700">
+                  <label className="mb-1 block text-sm font-medium text-gray-800">
                     Asunto
                   </label>
-                  <select className="w-full rounded-md border border-gray-300 px-3 py-2 focus:border-team-blue focus:outline-none focus:ring-1 focus:ring-team-blue">
+                  <select className="w-full rounded-md border border-team-orange/30 bg-team-orange/5 px-3 py-2 focus:border-team-orange focus:outline-none focus:ring-1 focus:ring-team-orange">
                     <option value="">Selecciona un tema</option>
                     <option value="membership">Membresías</option>
                     <option value="training">Entrenamiento</option>
@@ -179,17 +179,17 @@ export default function ContactPage() {
                 </div>
                 
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-gray-700">
+                  <label className="mb-1 block text-sm font-medium text-gray-800">
                     Mensaje
                   </label>
                   <textarea
                     rows={4}
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:border-team-blue focus:outline-none focus:ring-1 focus:ring-team-blue"
+                    className="w-full rounded-md border border-team-orange/30 bg-team-orange/5 px-3 py-2 focus:border-team-orange focus:outline-none focus:ring-1 focus:ring-team-orange"
                     placeholder="Escribe tu mensaje aquí..."
                   />
                 </div>
                 
-                <Button className="w-full bg-team-blue hover:bg-team-blue-dark">
+                <Button className="w-full bg-team-orange hover:bg-team-orange-light text-cream-white">
                   Enviar mensaje
                 </Button>
               </form>
@@ -199,28 +199,28 @@ export default function ContactPage() {
           {/* Departments & Social */}
           <div className="space-y-6">
             {/* Departments */}
-            <Card>
+            <Card className="bg-cream-white border-none shadow-lg">
               <CardHeader>
-                <CardTitle className="text-team-blue">
+                <CardTitle className="text-gray-800">
                   Departamentos
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   {departments.map((dept, index) => (
-                    <div key={index} className="border-b border-gray-100 pb-4 last:border-b-0 last:pb-0">
+                    <div key={index} className="border-b border-white/30 pb-4 last:border-b-0 last:pb-0">
                       <div className="mb-1 flex items-center justify-between">
-                        <h4 className="font-medium text-team-blue-dark">
+                        <h4 className="font-medium text-gray-800">
                           {dept.name}
                         </h4>
-                        <Badge variant="outline" className="border-team-blue text-team-blue">
+                        <Badge variant="outline" className="border-team-orange text-team-orange bg-white/50">
                           Contactar
                         </Badge>
                       </div>
                       <p className="mb-2 text-sm text-gray-600">
                         {dept.description}
                       </p>
-                      <div className="flex flex-col gap-1 text-xs text-gray-500">
+                      <div className="flex flex-col gap-1 text-xs text-team-orange-dark">
                         <span>{dept.email}</span>
                         <span>{dept.phone}</span>
                       </div>
@@ -231,9 +231,9 @@ export default function ContactPage() {
             </Card>
 
             {/* Social Media */}
-            <Card>
+            <Card className="bg-cream-white border-none shadow-lg">
               <CardHeader>
-                <CardTitle className="text-team-blue">
+                <CardTitle className="text-gray-800">
                   Síguenos en redes
                 </CardTitle>
               </CardHeader>
@@ -244,11 +244,11 @@ export default function ContactPage() {
                     return (
                       <div
                         key={index}
-                        className="flex items-center justify-between rounded-lg border border-gray-200 p-3 transition-colors hover:bg-gray-50"
+                        className="flex items-center justify-between rounded-lg border border-white/30 bg-white/50 p-3 transition-colors hover:bg-white/70"
                       >
                         <div className="flex items-center">
                           <div className={`mr-3 flex h-8 w-8 items-center justify-center rounded-full ${social.color}`}>
-                            <IconComponent className="h-4 w-4 text-white" />
+                            <IconComponent className="h-4 w-4 text-cream-white" />
                           </div>
                           <div>
                             <p className="font-medium text-gray-800">
@@ -262,7 +262,7 @@ export default function ContactPage() {
                         <Button
                           variant="outline"
                           size="sm"
-                          className="border-gray-300 hover:bg-gray-100"
+                          className="border-team-orange text-team-orange hover:bg-team-orange hover:text-cream-white"
                         >
                           Seguir
                         </Button>
@@ -276,17 +276,17 @@ export default function ContactPage() {
         </div>
 
         {/* Map Placeholder */}
-        <Card className="mt-8">
+        <Card className="mt-8 bg-cream-white border-none shadow-lg">
           <CardHeader>
-            <CardTitle className="text-team-blue">
+            <CardTitle className="text-gray-800">
               Nuestra ubicación
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex h-64 items-center justify-center rounded-lg bg-gradient-to-br from-team-blue-pastel to-team-orange-pastel">
+            <div className="flex h-64 items-center justify-center rounded-lg bg-gradient-to-br from-team-orange-pastel to-white">
               <div className="text-center">
-                <MapPin className="mx-auto mb-2 h-8 w-8 text-team-blue" />
-                <p className="font-medium text-team-blue-dark">
+                <MapPin className="mx-auto mb-2 h-8 w-8 text-team-orange" />
+                <p className="font-medium text-gray-800">
                   Mapa interactivo próximamente
                 </p>
                 <p className="text-sm text-gray-600">

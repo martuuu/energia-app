@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "tw-animate-css";
+@import "../styles/safelist.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -45,18 +45,10 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: #faf9f6; /* cream-white como base */
+  --background-gradient: linear-gradient(135deg, #1d4ed8 0%, #2563eb 30%, #3b82f6 70%, #60a5fa 100%); /* Gradiente más fuerte y azul */
   --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  
-  /* Energia App Custom Colors */
-  --team-blue: #2563eb;
-  --team-orange: #f97316;
-  --team-blue-dark: #1d4ed8;
-  --team-orange-light: #fb923c;
-  --team-blue-pastel: #a7c7ff;
-  --team-orange-pastel: #ffd4a7;
-  --cream-white: #faf9f6;
+  --card: #a7c7ff; /* team-blue-pastel */
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
@@ -88,7 +80,8 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: #1f2937; /* Color base para modo oscuro */
+  --background-gradient: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 30%, #2563eb 70%, #3b82f6 100%); /* Gradiente modo oscuro más fuerte y azul */
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
@@ -119,15 +112,6 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
-  
-  /* Energia App Custom Colors */
-  --team-blue: #2563eb;
-  --team-orange: #f97316;
-  --team-blue-dark: #1d4ed8;
-  --team-orange-light: #fb923c;
-  --team-blue-pastel: #a7c7ff;
-  --team-orange-pastel: #ffd4a7;
-  --cream-white: #faf9f6;
 }
 
 @layer base {

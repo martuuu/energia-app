@@ -11,7 +11,7 @@ interface AppLayoutProps {
 
 export function AppLayout({ children, userName, userAvatar }: AppLayoutProps) {
   return (
-    <div className="min-h-screen bg-cream-white">
+    <div className="min-h-screen" style={{ background: 'var(--background-gradient)' }}>
       <Navbar userName={userName} userAvatar={userAvatar} />
       
       <main className="pb-16 sm:pb-0">

@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
+import { useState, useEffect } from 'react'
 
 interface NavbarProps {
   userName?: string
@@ -9,22 +10,40 @@ interface NavbarProps {
 }
 
 export function Navbar({ userName, userAvatar }: NavbarProps) {
+  const [isVisible, setIsVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false) // Hide on scroll down
+      } else {
+        setIsVisible(true) // Show on scroll up
+      }
+
+      setLastScrollY(currentScrollY)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [lastScrollY])
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-team-blue/10 bg-cream-white/95 backdrop-blur supports-[backdrop-filter]:bg-cream-white/60">
-      <div className="container flex h-16 items-center justify-between px-4">
+    <header
+      className={`sticky top-0 z-50 w-full border-gray-200/10 bg-transparent backdrop-blur-md transition-transform duration-300 ${
+        isVisible ? 'translate-y-0' : '-translate-y-full'
+      }`}
+    >
+      <div className="container flex h-16 items-center justify-end px-4">
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-team-blue to-team-orange">
-            <span className="text-lg font-bold text-white">E</span>
-          </div>
-          <span className="text-xl font-bold text-team-blue">Energia</span>
-        </Link>
 
         {/* User Section */}
         <div className="flex items-center space-x-3">
           {userName ? (
             <div className="flex items-center space-x-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-team-blue-pastel">
+              <div className="bg-team-orange/10 flex h-8 w-8 items-center justify-center rounded-full">
                 {userAvatar ? (
                   <Image
                     src={userAvatar}
@@ -34,19 +53,19 @@ export function Navbar({ userName, userAvatar }: NavbarProps) {
                     className="h-8 w-8 rounded-full object-cover"
                   />
                 ) : (
-                  <span className="text-sm font-medium text-team-blue-dark">
+                  <span className="text-team-orange text-sm font-medium">
                     {userName.charAt(0).toUpperCase()}
                   </span>
                 )}
               </div>
-              <span className="hidden text-sm font-medium text-team-blue-dark sm:block">
+              <span className="hidden text-sm font-medium text-gray-700 sm:block">
                 {userName}
               </span>
             </div>
           ) : (
             <Link
               href="/login"
-              className="rounded-lg bg-team-blue px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-team-blue-dark"
+              className="bg-team-orange text-cream-white hover:bg-team-orange-light rounded-lg px-4 py-2 text-sm font-medium transition-colors"
             >
               Iniciar Sesión
             </Link>

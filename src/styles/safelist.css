@@ -1,0 +1,151 @@
+/* 
+  Safelist de clases personalizadas para Energia App
+  Este archivo fuerza a Tailwind a incluir nuestras clases custom
+*/
+
+/* Forzamos la inclusión de todas las clases que necesitamos */
+
+/* Backgrounds */
+.bg-team-blue { background-color: #2563eb !important; }
+.bg-team-orange { background-color: #f97316 !important; }
+.bg-team-blue-dark { background-color: #1d4ed8 !important; }
+.bg-team-orange-light { background-color: #fb923c !important; }
+.bg-team-blue-pastel { background-color: #a7c7ff !important; }
+.bg-team-orange-pastel { background-color: #ffd4a7 !important; }
+.bg-cream-white { background-color: #faf9f6 !important; }
+.bg-white { background-color: #faf9f6 !important; }
+.bg-background { background-color: var(--background) !important; }
+.bg-gradient-main { background: var(--background-gradient) !important; }
+
+/* Backgrounds con transparencia */
+.bg-cream-white\/95 { background-color: rgba(250, 249, 246, 0.95) !important; }
+.bg-cream-white\/90 { background-color: rgba(250, 249, 246, 0.90) !important; }
+
+/* Gradientes */
+.bg-gradient-to-br { background-image: linear-gradient(to bottom right, var(--tw-gradient-stops)) !important; }
+.from-team-orange { --tw-gradient-from: #f97316 !important; --tw-gradient-to: rgb(249 115 22 / 0) !important; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important; }
+.to-team-orange-light { --tw-gradient-to: #fb923c !important; }
+
+/* Text Colors */
+.text-team-blue { color: #2563eb !important; }
+.text-team-orange { color: #f97316 !important; }
+.text-team-orange-dark { color: #ea580c !important; }
+.text-team-blue-dark { color: #1d4ed8 !important; }
+.text-team-orange-light { color: #fb923c !important; }
+.text-team-blue-pastel { color: #a7c7ff !important; }
+.text-team-orange-pastel { color: #ffd4a7 !important; }
+.text-cream-white { color: #faf9f6 !important; }
+.text-gray-600 { color: #4b5563 !important; }
+.text-gray-700 { color: #374151 !important; }
+.text-gray-800 { color: #1f2937 !important; }
+
+/* Border Colors */
+.border-team-blue { border-color: #2563eb !important; }
+.border-team-orange { border-color: #f97316 !important; }
+.border-team-blue-dark { border-color: #1d4ed8 !important; }
+.border-team-orange-light { border-color: #fb923c !important; }
+.border-team-blue-pastel { border-color: #a7c7ff !important; }
+.border-team-orange-pastel { border-color: #ffd4a7 !important; }
+.border-gray-200 { border-color: #e5e7eb !important; }
+
+/* Hover States */
+.hover\:bg-team-blue:hover { background-color: #2563eb !important; }
+.hover\:bg-team-orange:hover { background-color: #f97316 !important; }
+.hover\:bg-team-blue-dark:hover { background-color: #1d4ed8 !important; }
+.hover\:bg-team-orange-light:hover { background-color: #fb923c !important; }
+.hover\:text-cream-white:hover { color: #faf9f6 !important; }
+.hover\:text-team-blue:hover { color: #2563eb !important; }
+.hover\:text-team-orange:hover { color: #f97316 !important; }
+.hover\:text-team-orange-dark:hover { color: #ea580c !important; }
+
+/* Animaciones usando el framework existente */
+@-webkit-keyframes bounceInLeft {
+  from, 60%, 75%, 90%, to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-3000px, 0, 0);
+    transform: translate3d(-3000px, 0, 0);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(25px, 0, 0);
+    transform: translate3d(25px, 0, 0);
+  }
+
+  75% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(5px, 0, 0);
+    transform: translate3d(5px, 0, 0);
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes bounceInLeft {
+  from, 60%, 75%, 90%, to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-3000px, 0, 0);
+    transform: translate3d(-3000px, 0, 0);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(25px, 0, 0);
+    transform: translate3d(25px, 0, 0);
+  }
+
+  75% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(5px, 0, 0);
+    transform: translate3d(5px, 0, 0);
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.bounceInLeft {
+  -webkit-animation-name: bounceInLeft;
+  animation-name: bounceInLeft;
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+/* Mantenemos solo lo necesario de Tailwind */
+.animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite !important; }
+
+/* Transformaciones */
+.hover\:scale-105:hover { transform: scale(1.05) !important; }
+.transform { transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important; }
+
+/* Transiciones */
+.transition-all { transition-property: all !important; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important; transition-duration: 150ms !important; }
+.duration-300 { transition-duration: 300ms !important; }

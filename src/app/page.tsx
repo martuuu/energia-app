@@ -1,36 +1,32 @@
 import { AppLayout } from '@/components/common/AppLayout'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { SPORT_CATEGORIES, SPORT_LABELS } from '@/constants'
+import { SPORT_CATEGORIES, SPORT_LABELS, SPORT_ICONS } from '@/constants'
 
 const sportCards = [
   {
     sport: SPORT_CATEGORIES.RUNNING,
     title: SPORT_LABELS[SPORT_CATEGORIES.RUNNING],
-    description: 'Artículos y entrenamientos para corredores',
-    bgColor: 'bg-team-blue-pastel',
-    textColor: 'text-team-blue-dark',
+    description: 'Técnicas y entrenamientos para corredores',
+    icon: SPORT_ICONS[SPORT_CATEGORIES.RUNNING],
   },
   {
     sport: SPORT_CATEGORIES.SWIMMING,
     title: SPORT_LABELS[SPORT_CATEGORIES.SWIMMING],
-    description: 'Técnicas y consejos de natación',
-    bgColor: 'bg-team-orange-pastel',
-    textColor: 'text-team-orange',
+    description: 'Todos los entrenamientos y consejos de natación',
+    icon: SPORT_ICONS[SPORT_CATEGORIES.SWIMMING],
   },
   {
     sport: SPORT_CATEGORIES.CYCLING,
     title: SPORT_LABELS[SPORT_CATEGORIES.CYCLING],
-    description: 'Rutas y mantenimiento de bicicletas',
-    bgColor: 'bg-team-blue-pastel',
-    textColor: 'text-team-blue-dark',
+    description: 'Artículos relacionados con ciclismo',
+    icon: SPORT_ICONS[SPORT_CATEGORIES.CYCLING],
   },
   {
     sport: SPORT_CATEGORIES.TRIATHLON,
     title: SPORT_LABELS[SPORT_CATEGORIES.TRIATHLON],
     description: 'Preparación integral para triatletas',
-    bgColor: 'bg-team-orange-pastel',
-    textColor: 'text-team-orange',
+    icon: SPORT_ICONS[SPORT_CATEGORIES.TRIATHLON],
   },
 ]
 
@@ -39,38 +35,43 @@ export default function Home() {
     <AppLayout userName="Usuario Demo">
       <div className="container mx-auto px-4 py-6">
         {/* Hero Section */}
-        <section className="mb-8 text-center">
-          <h1 className="mb-4 text-4xl font-bold text-team-blue">
-            Bienvenido a Energia
+        <section className="mb-12 text-center">
+          <h1 className="m-8 text-5xl font-normal text-cream-white tracking-tight">
+            Bienvenidos a{' '}
+            <div className="text-team-orange animated bounceInLeft font-normal">
+              Energía
+            </div>
           </h1>
-          <p className="text-lg text-gray-600">
-            Tu club de running, natación, ciclismo y triatlón
+          <p className="text-xl text-cream-white leading-relaxed">
+            La App donde encontras toda la información y recursos para
+            potenciar tu rendimiento.
           </p>
         </section>
 
         {/* Sport Categories */}
         <section className="mb-8">
-          <h2 className="mb-6 text-2xl font-semibold text-team-blue-dark">
+          <h2 className="text-cream-white mb-6 text-2xl font-semibold">
             Nuestras Disciplinas
           </h2>
           <div className="grid gap-4 sm:grid-cols-2">
-            {sportCards.map((card) => (
+            {sportCards.map(card => (
               <Card
                 key={card.sport}
-                className={`${card.bgColor} border-none shadow-lg transition-transform hover:scale-105`}
+                className="bg-cream-white border-none shadow-lg transition-transform hover:scale-105"
               >
                 <CardHeader>
-                  <CardTitle className={`${card.textColor} text-xl`}>
-                    {card.title}
-                  </CardTitle>
+                  <div className="flex items-center gap-3">
+                    <span className="text-3xl">{card.icon}</span>
+                    <CardTitle className="text-xl text-gray-800">
+                      {card.title}
+                    </CardTitle>
+                  </div>
                 </CardHeader>
                 <CardContent>
-                  <p className={`${card.textColor} mb-4`}>
-                    {card.description}
-                  </p>
+                  <p className="mb-4 text-gray-600">{card.description}</p>
                   <Button
                     variant="outline"
-                    className={`border-current ${card.textColor} hover:bg-white/20`}
+                    className="border-team-orange text-team-orange hover:bg-team-orange hover:text-cream-white"
                   >
                     Ver Artículos
                   </Button>
@@ -82,35 +83,41 @@ export default function Home() {
 
         {/* Quick Actions */}
         <section className="mb-8">
-          <h2 className="mb-6 text-2xl font-semibold text-team-blue-dark">
+          <h2 className="text-cream-white mb-6 text-2xl font-semibold">
             Acceso Rápido
           </h2>
           <div className="grid gap-4 sm:grid-cols-2">
-            <Card className="border-team-blue/20">
+            <Card className="bg-cream-white border-none shadow-lg">
               <CardContent className="p-6">
-                <h3 className="mb-2 text-lg font-semibold text-team-blue">
-                  Próximos Eventos
-                </h3>
+                <div className="mb-2 flex items-center gap-3">
+                  <span className="text-2xl">📅</span>
+                  <h3 className="text-team-orange text-lg font-semibold">
+                    Próximos Eventos
+                  </h3>
+                </div>
                 <p className="mb-4 text-gray-600">
                   Descubre los eventos en los que participaremos
                 </p>
-                <Button className="bg-team-blue hover:bg-team-blue-dark">
+                <Button className="bg-team-orange hover:bg-team-orange-light text-cream-white">
                   Ver Eventos
                 </Button>
               </CardContent>
             </Card>
 
-            <Card className="border-team-orange/20">
+            <Card className="bg-cream-white border-none shadow-lg">
               <CardContent className="p-6">
-                <h3 className="mb-2 text-lg font-semibold text-team-orange">
-                  Últimos Artículos
-                </h3>
+                <div className="mb-2 flex items-center gap-3">
+                  <span className="text-2xl">📖</span>
+                  <h3 className="text-team-orange text-lg font-semibold">
+                    Últimos Artículos
+                  </h3>
+                </div>
                 <p className="mb-4 text-gray-600">
                   Lee los artículos más recientes
                 </p>
                 <Button
                   variant="outline"
-                  className="border-team-orange text-team-orange hover:bg-team-orange hover:text-white"
+                  className="border-team-orange text-team-orange hover:bg-team-orange hover:text-cream-white"
                 >
                   Leer Más
                 </Button>

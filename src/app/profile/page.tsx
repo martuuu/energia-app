@@ -130,27 +130,27 @@ export default function ProfilePage() {
         <div className="grid gap-8 lg:grid-cols-3">
           {/* Profile Info */}
           <div className="space-y-6">
-            <Card>
+            <Card className="bg-cream-white border-none shadow-lg">
               <CardContent className="pt-6">
                 <div className="text-center">
-                  <div className="mx-auto mb-4 h-24 w-24 rounded-full bg-gradient-to-br from-team-blue to-team-orange p-1">
-                    <div className="flex h-full w-full items-center justify-center rounded-full bg-white">
-                      <User className="h-12 w-12 text-team-blue" />
+                  <div className="mx-auto mb-4 h-24 w-24 rounded-full bg-team-orange/10 p-1">
+                    <div className="flex h-full w-full items-center justify-center rounded-full bg-team-orange/5">
+                      <User className="h-12 w-12 text-team-orange" />
                     </div>
                   </div>
-                  <h2 className="mb-1 text-xl font-bold text-team-blue-dark">
+                  <h2 className="mb-1 text-xl font-bold text-team-orange">
                     {userData.name}
                   </h2>
-                  <p className="mb-2 text-gray-600">{userData.email}</p>
-                  <Badge className="bg-team-orange text-white">
+                  <p className="mb-2 text-team-orange">{userData.email}</p>
+                  <Badge className="bg-team-orange text-cream-white">
                     {userData.membershipType}
                   </Badge>
                 </div>
                 
                 <div className="mt-6 space-y-3 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Miembro desde:</span>
-                    <span className="font-medium">
+                    <span className="text-team-orange">Miembro desde:</span>
+                    <span className="font-medium text-team-orange">
                       {new Date(userData.memberSince).toLocaleDateString('es-ES', {
                         year: 'numeric',
                         month: 'long'
@@ -158,17 +158,17 @@ export default function ProfilePage() {
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Ubicación:</span>
-                    <span className="font-medium">{userData.location}</span>
+                    <span className="text-team-orange">Ubicación:</span>
+                    <span className="font-medium text-team-orange">{userData.location}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Edad:</span>
-                    <span className="font-medium">{userData.age} años</span>
+                    <span className="text-team-orange">Edad:</span>
+                    <span className="font-medium text-team-orange">{userData.age} años</span>
                   </div>
                 </div>
 
                 <div className="mt-6">
-                  <Button className="w-full bg-team-blue hover:bg-team-blue-dark">
+                  <Button className="w-full bg-team-orange hover:bg-team-orange-light text-cream-white">
                     <Settings className="mr-2 h-4 w-4" />
                     Editar perfil
                   </Button>
@@ -177,37 +177,37 @@ export default function ProfilePage() {
             </Card>
 
             {/* Quick Stats */}
-            <Card>
+            <Card className="bg-cream-white border-none shadow-lg">
               <CardHeader>
-                <CardTitle className="text-team-blue">
+                <CardTitle className="text-team-orange">
                   Estadísticas rápidas
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="text-center">
-                    <div className="mb-1 text-2xl font-bold text-team-blue">
+                    <div className="mb-1 text-2xl font-bold text-team-orange">
                       {userData.stats.totalWorkouts}
                     </div>
-                    <div className="text-xs text-gray-600">Entrenamientos</div>
+                    <div className="text-xs text-team-orange">Entrenamientos</div>
                   </div>
                   <div className="text-center">
                     <div className="mb-1 text-2xl font-bold text-team-orange">
                       {userData.stats.totalDistance}
                     </div>
-                    <div className="text-xs text-gray-600">Km totales</div>
+                    <div className="text-xs text-team-orange">Km totales</div>
                   </div>
                   <div className="text-center">
-                    <div className="mb-1 text-2xl font-bold text-team-blue-dark">
+                    <div className="mb-1 text-2xl font-bold text-team-orange">
                       {Math.round(userData.stats.totalTime / 60)}
                     </div>
-                    <div className="text-xs text-gray-600">Horas</div>
+                    <div className="text-xs text-team-orange">Horas</div>
                   </div>
                   <div className="text-center">
-                    <div className="mb-1 text-2xl font-bold text-team-orange-light">
+                    <div className="mb-1 text-2xl font-bold text-team-orange">
                       {userData.stats.eventsCompleted}
                     </div>
-                    <div className="text-xs text-gray-600">Eventos</div>
+                    <div className="text-xs text-team-orange">Eventos</div>
                   </div>
                 </div>
               </CardContent>
@@ -217,9 +217,9 @@ export default function ProfilePage() {
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-6">
             {/* Current Goals */}
-            <Card>
+            <Card className="bg-cream-white border-none shadow-lg">
               <CardHeader>
-                <CardTitle className="flex items-center text-team-blue">
+                <CardTitle className="flex items-center text-team-orange">
                   <Target className="mr-2 h-5 w-5" />
                   Objetivos actuales
                 </CardTitle>
@@ -227,24 +227,24 @@ export default function ProfilePage() {
               <CardContent>
                 <div className="space-y-4">
                   {userData.currentGoals.map((goal) => (
-                    <div key={goal.id} className="rounded-lg border border-gray-200 p-4">
+                    <div key={goal.id} className="rounded-lg border border-team-orange/20 bg-team-orange/5 p-4">
                       <div className="mb-2 flex items-center justify-between">
-                        <h4 className="font-medium text-team-blue-dark">
+                        <h4 className="font-medium text-team-orange">
                           {goal.title}
                         </h4>
-                        <Badge variant="outline" className="border-team-blue text-team-blue">
+                        <Badge variant="outline" className="border-team-orange text-team-orange bg-team-orange/5">
                           {goal.progress}%
                         </Badge>
                       </div>
                       
                       <div className="mb-2 h-2 overflow-hidden rounded-full bg-gray-200">
                         <div 
-                          className="h-full bg-team-blue transition-all duration-300"
+                          className="h-full bg-team-orange transition-all duration-300"
                           style={{ width: `${goal.progress}%` }}
                         />
                       </div>
                       
-                      <div className="flex justify-between text-sm text-gray-600">
+                      <div className="flex justify-between text-sm text-team-orange">
                         <span>Actual: {goal.current}</span>
                         <span>Meta: {goal.target}</span>
                       </div>
@@ -253,7 +253,7 @@ export default function ProfilePage() {
                 </div>
                 
                 <div className="mt-4">
-                  <Button variant="outline" className="w-full border-team-blue text-team-blue hover:bg-team-blue hover:text-white">
+                  <Button variant="outline" className="w-full border-team-orange text-team-orange hover:bg-team-orange hover:text-cream-white">
                     <Target className="mr-2 h-4 w-4" />
                     Agregar nuevo objetivo
                   </Button>
@@ -262,9 +262,9 @@ export default function ProfilePage() {
             </Card>
 
             {/* Recent Achievements */}
-            <Card>
+            <Card className="bg-cream-white border-none shadow-lg">
               <CardHeader>
-                <CardTitle className="flex items-center text-team-blue">
+                <CardTitle className="flex items-center text-team-orange">
                   <Award className="mr-2 h-5 w-5" />
                   Logros recientes
                 </CardTitle>
@@ -276,17 +276,17 @@ export default function ProfilePage() {
                     return (
                       <div key={achievement.id} className="flex items-center space-x-4">
                         <div className={`flex h-12 w-12 items-center justify-center rounded-full ${achievement.color}`}>
-                          <IconComponent className="h-6 w-6 text-white" />
+                          <IconComponent className="h-6 w-6 text-cream-white" />
                         </div>
                         <div className="flex-1">
-                          <h4 className="font-medium text-team-blue-dark">
+                          <h4 className="font-medium text-team-orange">
                             {achievement.title}
                           </h4>
-                          <p className="text-sm text-gray-600">
+                          <p className="text-sm text-team-orange">
                             {achievement.description}
                           </p>
                         </div>
-                        <div className="text-xs text-gray-500">
+                        <div className="text-xs text-team-orange">
                           {new Date(achievement.date).toLocaleDateString('es-ES')}
                         </div>
                       </div>
@@ -297,9 +297,9 @@ export default function ProfilePage() {
             </Card>
 
             {/* Favorite Activities */}
-            <Card>
+            <Card className="bg-cream-white border-none shadow-lg">
               <CardHeader>
-                <CardTitle className="text-team-blue">
+                <CardTitle className="text-team-orange">
                   Actividades favoritas
                 </CardTitle>
               </CardHeader>
@@ -310,10 +310,10 @@ export default function ProfilePage() {
                     return (
                       <div
                         key={index}
-                        className="flex items-center space-x-2 rounded-full bg-team-blue-pastel px-4 py-2"
+                        className="flex items-center space-x-2 rounded-full bg-team-orange/5 px-4 py-2"
                       >
-                        <IconComponent className="h-4 w-4 text-team-blue" />
-                        <span className="text-sm font-medium text-team-blue-dark">
+                        <IconComponent className="h-4 w-4 text-team-orange" />
+                        <span className="text-sm font-medium text-team-orange">
                           {getActivityLabel(activity)}
                         </span>
                       </div>
@@ -322,7 +322,7 @@ export default function ProfilePage() {
                 </div>
                 
                 <div className="mt-4">
-                  <Button variant="outline" className="border-team-orange text-team-orange hover:bg-team-orange hover:text-white">
+                  <Button variant="outline" className="border-team-orange text-team-orange hover:bg-team-orange hover:text-cream-white">
                     <TrendingUp className="mr-2 h-4 w-4" />
                     Ver progreso detallado
                   </Button>
