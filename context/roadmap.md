@@ -1,33 +1,33 @@
 # Roadmap de Desarrollo - Energia App
 
 ## Fase 1: Configuración Inicial
-- [ ] Inicializar repositorio Git
-- [ ] Crear proyecto Next.js 15 con TypeScript
-- [ ] Configurar Tailwind CSS
-- [ ] Instalar y configurar Shadcn/ui
-- [ ] Setup inicial de ESLint y Prettier
-- [ ] Configurar variables de entorno (.env.local)
-- [ ] Crear estructura de carpetas base
-- [ ] Setup de GitHub repository remoto
+- [x] Inicializar repositorio Git
+- [x] Crear proyecto Next.js 15 con TypeScript
+- [x] Configurar Tailwind CSS
+- [x] Instalar y configurar Shadcn/ui
+- [x] Setup inicial de ESLint y Prettier
+- [x] Configurar variables de entorno (.env.local)
+- [x] Crear estructura de carpetas base
+- [x] Setup de GitHub repository remoto
 
 ## Fase 2: Frontend Base (UI/UX Foundation)
-- [ ] **Layout Principal**
-  - [ ] Crear layout raíz con Next.js App Router
-  - [ ] Implementar navegación base (Navbar)
-  - [ ] Configurar bottom navigation para móvil
-  - [ ] Setup de tipografía y tema base con Tailwind
+- [x] **Layout Principal**
+  - [x] Crear layout raíz con Next.js App Router
+  - [x] Implementar navegación base (Navbar)
+  - [x] Configurar bottom navigation para móvil
+  - [x] Setup de tipografía y tema base con Tailwind
   
-- [ ] **Componentes Base UI**
-  - [ ] Configurar paleta de colores custom en Tailwind
-  - [ ] Crear componentes base (Button, Card, Container)
-  - [ ] Implementar componentes de navegación
-  - [ ] Setup de componentes responsivos
+- [x] **Componentes Base UI**
+  - [x] Configurar paleta de colores custom en Tailwind
+  - [x] Crear componentes base (Button, Card, Container)
+  - [x] Implementar componentes de navegación
+  - [x] Setup de componentes responsivos
 
 - [ ] **Páginas Principales (Mockup/Static)**
-  - [ ] Home/Dashboard básico
-  - [ ] Página de Artículos (lista estática)
-  - [ ] Página de Eventos (lista estática)
-  - [ ] Página de Contacto
+  - [x] Home/Dashboard básico
+  - [x] Página de Artículos (lista estática)
+  - [x] Página de Eventos (lista estática)
+  - [x] Página de Contacto
   - [ ] Página de Perfil de Usuario
   - [ ] Página individual de Artículo
 
