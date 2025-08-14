@@ -57,7 +57,7 @@ export default function Home() {
             {sportCards.map(card => (
               <Card
                 key={card.sport}
-                className="bg-cream-white border-none shadow-lg transition-transform hover:scale-105"
+                className="bg-cream-white border-none shadow-lg transition-transform"
               >
                 <CardHeader>
                   <div className="flex items-center gap-3">

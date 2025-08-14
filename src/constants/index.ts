@@ -1,4 +1,5 @@
 // Constants for the Energia App
+import type { NavigationItem, DropdownMenuItem } from '@/types'
 
 export const SPORT_CATEGORIES = {
   RUNNING: 'running',
@@ -34,13 +35,22 @@ export const EVENT_STATUS = {
   CANCELLED: 'cancelled',
 } as const
 
-export const NAVIGATION_ITEMS = [
+export const NAVIGATION_ITEMS: NavigationItem[] = [
   { label: 'Home', href: '/', icon: 'Home' },
   { label: 'Artículos', href: '/articles', icon: 'BookOpen' },
   { label: 'Eventos', href: '/events', icon: 'Calendar' },
   { label: 'Contacto', href: '/contact', icon: 'Mail' },
-  { label: 'Más', href: '/more', icon: 'Menu' },
-] as const
+  { label: 'Más', href: '#', icon: 'Menu', hasDropdown: true },
+]
+
+export const DROPDOWN_MENU_ITEMS: DropdownMenuItem[] = [
+  { label: 'Mi Cuenta', href: '/profile', icon: 'User' },
+  { label: 'Mis Entrenamientos', href: '/trainings', icon: 'Dumbbell' },
+  { label: 'Seguimiento de Entrenador', href: '/coach-tracking', icon: 'Eye' },
+  { label: 'Subscripciones', href: '/subscriptions', icon: 'CreditCard' },
+  { label: 'Energia Merch', href: '/merch', icon: 'ShoppingBag' },
+  { label: 'Información', href: '/info', icon: 'Info' },
+]
 
 export const COLORS = {
   TEAM_BLUE: '#2563eb',

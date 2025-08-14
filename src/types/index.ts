@@ -58,3 +58,16 @@ export interface EventRegistration {
   registeredAt: Date
   status: 'registered' | 'cancelled' | 'attended'
 }
+
+export interface NavigationItem {
+  label: string
+  href: string
+  icon: string
+  hasDropdown?: boolean
+}
+
+export interface DropdownMenuItem {
+  label: string
+  href: string
+  icon: string
+}
