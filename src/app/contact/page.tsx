@@ -1,4 +1,5 @@
 import { AppLayout } from '@/components/common/AppLayout'
+import { BackButton } from '@/components/common/BackButton'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -95,6 +96,9 @@ export default function ContactPage() {
   return (
     <AppLayout userName="Usuario Demo">
       <div className="container mx-auto px-4 py-6">
+        {/* Back Button */}
+        <BackButton href="/" />
+        
         {/* Header */}
         <div className="mb-8">
           <h1 className="mb-4 text-3xl font-bold text-cream-white">

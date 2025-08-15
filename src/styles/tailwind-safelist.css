@@ -3,6 +3,23 @@
   No se importa en ningún lugar, solo sirve para que Tailwind las detecte
 */
 
+/* Clases de utilidad para contenido */
+.line-clamp-2 { 
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 { 
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 /* Colores de fondo */
 .bg-team-blue { background-color: #2563eb; }
 .bg-team-orange { background-color: #f97316; }

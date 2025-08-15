@@ -1,32 +1,30 @@
 import { AppLayout } from '@/components/common/AppLayout'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { SPORT_CATEGORIES, SPORT_LABELS, SPORT_ICONS } from '@/constants'
+import { SportIcon, SportType } from '@/components/ui/sport-icon'
+import { SPORT_CATEGORIES, SPORT_LABELS } from '@/constants'
+import Link from 'next/link'
 
 const sportCards = [
   {
     sport: SPORT_CATEGORIES.RUNNING,
     title: SPORT_LABELS[SPORT_CATEGORIES.RUNNING],
     description: 'Técnicas y entrenamientos para corredores',
-    icon: SPORT_ICONS[SPORT_CATEGORIES.RUNNING],
   },
   {
     sport: SPORT_CATEGORIES.SWIMMING,
     title: SPORT_LABELS[SPORT_CATEGORIES.SWIMMING],
     description: 'Todos los entrenamientos y consejos de natación',
-    icon: SPORT_ICONS[SPORT_CATEGORIES.SWIMMING],
   },
   {
     sport: SPORT_CATEGORIES.CYCLING,
     title: SPORT_LABELS[SPORT_CATEGORIES.CYCLING],
     description: 'Artículos relacionados con ciclismo',
-    icon: SPORT_ICONS[SPORT_CATEGORIES.CYCLING],
   },
   {
     sport: SPORT_CATEGORIES.TRIATHLON,
     title: SPORT_LABELS[SPORT_CATEGORIES.TRIATHLON],
     description: 'Preparación integral para triatletas',
-    icon: SPORT_ICONS[SPORT_CATEGORIES.TRIATHLON],
   },
 ]
 
@@ -37,8 +35,8 @@ export default function Home() {
         {/* Hero Section */}
         <section className="mb-12 text-center">
           <h1 className="m-8 text-5xl font-normal text-cream-white tracking-tight">
-            Bienvenidos a{' '}
-            <div className="text-team-orange animated bounceInLeft font-normal">
+            Bienvenidos a
+            <div className="text-team-cream animated bounceInLeft font-normal">
               Energía
             </div>
           </h1>
@@ -58,10 +56,11 @@ export default function Home() {
               <Card
                 key={card.sport}
                 className="bg-cream-white border-none shadow-lg transition-transform"
+                iconPattern={card.sport as SportType}
               >
                 <CardHeader>
                   <div className="flex items-center gap-3">
-                    <span className="text-3xl">{card.icon}</span>
+                    <SportIcon sport={card.sport as SportType} size={32} />
                     <CardTitle className="text-xl text-gray-800">
                       {card.title}
                     </CardTitle>
@@ -69,12 +68,14 @@ export default function Home() {
                 </CardHeader>
                 <CardContent>
                   <p className="mb-4 text-gray-600">{card.description}</p>
-                  <Button
-                    variant="outline"
-                    className="border-team-orange text-team-orange hover:bg-team-orange hover:text-cream-white"
-                  >
-                    Ver Artículos
-                  </Button>
+                  <Link href="/articles">
+                    <Button
+                      variant="outline"
+                      className="border-team-orange text-team-orange hover:bg-team-orange hover:text-cream-white"
+                    >
+                      Ver Artículos
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             ))}
@@ -98,9 +99,11 @@ export default function Home() {
                 <p className="mb-4 text-gray-600">
                   Descubre los eventos en los que participaremos
                 </p>
-                <Button className="bg-team-orange hover:bg-team-orange-light text-cream-white">
-                  Ver Eventos
-                </Button>
+                <Link href="/events">
+                  <Button className="bg-team-orange hover:bg-team-orange-light text-cream-white">
+                    Ver Eventos
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
 
@@ -115,12 +118,14 @@ export default function Home() {
                 <p className="mb-4 text-gray-600">
                   Lee los artículos más recientes
                 </p>
-                <Button
-                  variant="outline"
-                  className="border-team-orange text-team-orange hover:bg-team-orange hover:text-cream-white"
-                >
-                  Leer Más
-                </Button>
+                <Link href="/articles">
+                  <Button
+                    variant="outline"
+                    className="border-team-orange text-team-orange hover:bg-team-orange hover:text-cream-white"
+                  >
+                    Leer Más
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           </div>

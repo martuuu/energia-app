@@ -27,11 +27,17 @@ export function BottomNavigation() {
   const pathname = usePathname()
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
 
   // Cerrar dropdown al hacer click fuera
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current && 
+        !dropdownRef.current.contains(event.target as Node) &&
+        menuButtonRef.current &&
+        !menuButtonRef.current.contains(event.target as Node)
+      ) {
         setIsDropdownOpen(false)
       }
     }
@@ -42,9 +48,12 @@ export function BottomNavigation() {
     }
   }, [])
 
-  const handleMenuClick = (item: NavigationItem) => {
+  const handleMenuClick = (item: NavigationItem, event: React.MouseEvent) => {
+    event.preventDefault()
+    event.stopPropagation()
+    
     if (item.hasDropdown) {
-      setIsDropdownOpen(prev => !prev) // Siempre alterna el estado
+      setIsDropdownOpen(prev => !prev)
     } else {
       setIsDropdownOpen(false)
     }
@@ -112,7 +121,8 @@ export function BottomNavigation() {
             return (
               <button
                 key={item.label}
-                onClick={() => handleMenuClick(item)}
+                ref={menuButtonRef}
+                onClick={(event) => handleMenuClick(item, event)}
                 className={cn(
                   'flex flex-col items-center py-2 px-3 text-xs font-medium transition-colors',
                   isDropdownOpen

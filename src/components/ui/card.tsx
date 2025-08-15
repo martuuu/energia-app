@@ -1,17 +1,42 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { SportIcon, SportType } from "./sport-icon"
 
-function Card({ className, ...props }: React.ComponentProps<"div">) {
+interface CardProps extends React.ComponentProps<"div"> {
+  iconPattern?: SportType;
+}
+
+function Card({ className, iconPattern, ...props }: CardProps) {
   return (
     <div
       data-slot="card"
       className={cn(
-        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
+        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm relative overflow-hidden",
         className
       )}
       {...props}
-    />
+    >
+      {iconPattern && (
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute right-0 top-0 w-[30%] h-full flex flex-col justify-center items-center overflow-hidden">
+            <div className="grid grid-cols-4 gap-x-10 gap-y-6 transform rotate-45 scale-150 translate-x-6">
+              {Array.from({ length: 20 }).map((_, index) => (
+                <div 
+                  key={index} 
+                  className="w-8 h-8 flex items-center justify-center"
+                >
+                  <SportIcon sport={iconPattern} size={28} opacity={0.15} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+      <div className="relative z-10">
+        {props.children}
+      </div>
+    </div>
   )
 }
 

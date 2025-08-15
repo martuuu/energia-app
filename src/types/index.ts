@@ -1,4 +1,5 @@
 // Types for the Energia App
+import { ArticleSection } from './content-sections'
 
 export interface User {
   id: string
@@ -14,7 +15,7 @@ export interface Article {
   id: string
   title: string
   slug: string
-  content: string
+  content: string | ArticleSection[] // Soporte para contenido legacy y nuevo
   excerpt: string
   category: SportCategory
   tags: string[]
@@ -22,6 +23,7 @@ export interface Article {
   featuredImage?: string
   published: boolean
   publishedAt?: Date
+  readTime?: string // Para compatibilidad con mock data
   createdAt: Date
   updatedAt: Date
 }

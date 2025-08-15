@@ -1,65 +1,14 @@
+'use client'
+
+import { useState } from 'react'
 import { AppLayout } from '@/components/common/AppLayout'
+import { BackButton } from '@/components/common/BackButton'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Calendar, MapPin, Users } from 'lucide-react'
 import { SPORT_CATEGORIES, SPORT_LABELS } from '@/constants'
+import { mockEvents } from '@/data/mockData'
 import Image from 'next/image'
-
-// Mock data para eventos
-const mockEvents = [
-  {
-    id: '1',
-    title: 'Maratón Ciudad de Buenos Aires',
-    description: 'Participa en uno de los maratones más importantes de Argentina.',
-    date: '2024-04-21',
-    location: 'Buenos Aires, Argentina',
-    category: SPORT_CATEGORIES.RUNNING,
-    maxParticipants: 15000,
-    currentParticipants: 12450,
-    status: 'upcoming',
-    registrationDeadline: '2024-04-10',
-    image: '/images/runner-road.webp',
-  },
-  {
-    id: '2',
-    title: 'Travesía del Río de la Plata',
-    description: 'Desafío de natación en aguas abiertas de 3km.',
-    date: '2024-03-15',
-    location: 'Tigre, Buenos Aires',
-    category: SPORT_CATEGORIES.SWIMMING,
-    maxParticipants: 200,
-    currentParticipants: 180,
-    status: 'upcoming',
-    registrationDeadline: '2024-03-10',
-    image: '/images/la-plata.png',
-  },
-  {
-    id: '3',
-    title: 'Gran Fondo de los Andes',
-    description: 'Cicloturismo de 120km por las montañas de Mendoza.',
-    date: '2024-05-18',
-    location: 'Mendoza, Argentina',
-    category: SPORT_CATEGORIES.CYCLING,
-    maxParticipants: 500,
-    currentParticipants: 350,
-    status: 'upcoming',
-    registrationDeadline: '2024-05-01',
-    image: '/images/mardel.png',
-  },
-  {
-    id: '4',
-    title: 'Ironman 70.3 Mar del Plata',
-    description: 'Media distancia Ironman en la costa atlántica.',
-    date: '2024-02-25',
-    location: 'Mar del Plata, Buenos Aires',
-    category: SPORT_CATEGORIES.TRIATHLON,
-    maxParticipants: 1000,
-    currentParticipants: 850,
-    status: 'completed',
-    registrationDeadline: '2024-02-15',
-    image: '/images/mardel.png',
-  },
-]
 
 const getCategoryColor = (category: string) => {
   switch (category) {
@@ -107,9 +56,35 @@ const getStatusLabel = (status: string) => {
 }
 
 export default function EventsPage() {
+  const [selectedStatus, setSelectedStatus] = useState<string>('all')
+  const [displayCount, setDisplayCount] = useState(2) // Mostrar 2 inicialmente
+
+  // Filtrar eventos por estado
+  const filteredEvents = selectedStatus === 'all' 
+    ? mockEvents
+    : selectedStatus === 'upcoming' 
+      ? mockEvents.filter(event => event.status === 'upcoming')
+      : mockEvents.filter(event => event.status === 'completed')
+
+  // Eventos para mostrar (con paginación)
+  const displayedEvents = filteredEvents.slice(0, displayCount)
+  const hasMore = displayCount < filteredEvents.length
+
+  const handleStatusFilter = (status: string) => {
+    setSelectedStatus(status)
+    setDisplayCount(2) // Reset al cambiar filtro
+  }
+
+  const loadMore = () => {
+    setDisplayCount(prev => prev + 2)
+  }
+
   return (
     <AppLayout userName="Usuario Demo">
       <div className="container mx-auto px-4 py-6">
+        {/* Back Button */}
+        <BackButton href="/" />
+        
         {/* Header */}
         <div className="mb-8">
           <h1 className="mb-4 text-3xl font-bold text-cream-white">
@@ -122,26 +97,47 @@ export default function EventsPage() {
 
         {/* Filter Buttons */}
         <div className="mb-8 flex flex-wrap gap-2">
-          <Button variant="default" className="bg-team-blue hover:bg-team-blue-dark">
-            Todos
+          <Button 
+            variant={selectedStatus === 'all' ? 'default' : 'outline'}
+            onClick={() => handleStatusFilter('all')}
+            className={selectedStatus === 'all' 
+              ? 'bg-team-blue hover:bg-team-blue-dark text-cream-white' 
+              : 'border-team-blue text-team-blue hover:bg-team-blue-pastel'
+            }
+          >
+            Todos ({mockEvents.length})
           </Button>
-          <Button variant="outline" className="border-team-blue text-team-blue hover:bg-team-blue-pastel">
-            Próximos
+          <Button 
+            variant={selectedStatus === 'upcoming' ? 'default' : 'outline'}
+            onClick={() => handleStatusFilter('upcoming')}
+            className={selectedStatus === 'upcoming'
+              ? 'bg-green-500 hover:bg-green-600 text-cream-white'
+              : 'border-green-500 text-green-500 hover:bg-green-500 hover:text-cream-white'
+            }
+          >
+            Próximos ({mockEvents.filter(e => e.status === 'upcoming').length})
           </Button>
-          <Button variant="outline" className="border-team-orange text-team-orange hover:bg-team-orange-pastel">
-            Finalizados
+          <Button 
+            variant={selectedStatus === 'completed' ? 'default' : 'outline'}
+            onClick={() => handleStatusFilter('completed')}
+            className={selectedStatus === 'completed'
+              ? 'bg-gray-500 hover:bg-gray-600 text-cream-white'
+              : 'border-gray-500 text-gray-500 hover:bg-gray-500 hover:text-cream-white'
+            }
+          >
+            Finalizados ({mockEvents.filter(e => e.status === 'completed').length})
           </Button>
         </div>
 
-        {/* Events Grid */}
-        <div className="grid gap-8 lg:grid-cols-2">
-          {mockEvents.map((event) => (
+        {/* Events Grid - Optimizado para móvil */}
+        <div className="grid gap-6 lg:grid-cols-2">
+          {displayedEvents.map((event) => (
             <div
               key={event.id}
               className="bg-cream-white border-none shadow-lg overflow-hidden transition-all duration-200 hover:shadow-xl hover:scale-[1.02] rounded-lg"
             >
-              {/* Imagen pegada al borde superior */}
-              <div className="relative h-48 w-full">
+              {/* Imagen optimizada para móvil */}
+              <div className="relative h-48 sm:h-56 w-full">
                 <Image
                   src={event.image}
                   alt={event.title}
@@ -151,8 +147,8 @@ export default function EventsPage() {
                 />
               </div>
               
-              {/* Contenido con padding normal */}
-              <div className="p-6">
+              {/* Contenido optimizado para móvil */}
+              <div className="p-4 sm:p-6">
                 <div className="mb-3 flex items-center justify-between">
                   <Badge className={getCategoryColor(event.category)}>
                     {SPORT_LABELS[event.category as keyof typeof SPORT_LABELS]}
@@ -161,31 +157,33 @@ export default function EventsPage() {
                     {getStatusLabel(event.status)}
                   </Badge>
                 </div>
-                <h3 className="mb-3 text-xl font-semibold text-gray-800">
+                <h3 className="mb-3 text-lg sm:text-xl font-semibold text-gray-800">
                   {event.title}
                 </h3>
-                <p className="mb-4 text-sm text-gray-600">
+                <p className="mb-4 text-sm text-gray-600 leading-relaxed">
                   {event.description}
                 </p>
                 
                 <div className="mb-4 space-y-2">
                   <div className="flex items-center text-sm text-gray-600">
-                    <Calendar className="mr-2 h-4 w-4 text-team-blue" />
-                    {new Date(event.date).toLocaleDateString('es-ES', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })}
+                    <Calendar className="mr-2 h-4 w-4 text-team-blue flex-shrink-0" />
+                    <span className="truncate">
+                      {new Date(event.date).toLocaleDateString('es-ES', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}
+                    </span>
                   </div>
                   
                   <div className="flex items-center text-sm text-gray-600">
-                    <MapPin className="mr-2 h-4 w-4 text-team-orange" />
-                    {event.location}
+                    <MapPin className="mr-2 h-4 w-4 text-team-orange flex-shrink-0" />
+                    <span className="truncate">{event.location}</span>
                   </div>
                   
                   <div className="flex items-center text-sm text-gray-600">
-                    <Users className="mr-2 h-4 w-4 text-team-blue-dark" />
-                    {event.currentParticipants} / {event.maxParticipants} participantes
+                    <Users className="mr-2 h-4 w-4 text-team-blue-dark flex-shrink-0" />
+                    <span>{event.currentParticipants} / {event.maxParticipants} participantes</span>
                   </div>
                 </div>
 
@@ -202,7 +200,7 @@ export default function EventsPage() {
                   </div>
                 </div>
                 
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                   <div className="text-xs text-gray-500">
                     <p>Inscripción hasta:</p>
                     <p className="font-medium">
@@ -213,8 +211,8 @@ export default function EventsPage() {
                     size="sm" 
                     disabled={event.status === 'completed'}
                     className={event.status === 'completed' 
-                      ? 'bg-gray-400' 
-                      : 'bg-team-blue hover:bg-team-blue-dark'
+                      ? 'bg-gray-400 w-full sm:w-auto' 
+                      : 'bg-team-blue hover:bg-team-blue-dark w-full sm:w-auto'
                     }
                   >
                     {event.status === 'completed' ? 'Finalizado' : 'Inscribirse'}
@@ -225,12 +223,27 @@ export default function EventsPage() {
           ))}
         </div>
 
-        {/* Load More */}
-        <div className="mt-8 text-center">
-          <Button variant="outline" className="border-team-orange text-team-orange hover:bg-team-orange hover:text-cream-white">
-            Ver más eventos
-          </Button>
-        </div>
+        {/* Load More - Funcional */}
+        {hasMore && (
+          <div className="mt-8 text-center">
+            <Button 
+              variant="outline" 
+              onClick={loadMore}
+              className="border-team-orange text-team-orange hover:bg-team-orange hover:text-cream-white px-8 py-3"
+            >
+              Ver más eventos ({filteredEvents.length - displayCount} restantes)
+            </Button>
+          </div>
+        )}
+
+        {/* No results message */}
+        {filteredEvents.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-cream-white text-lg">
+              No hay eventos en esta categoría
+            </p>
+          </div>
+        )}
       </div>
     </AppLayout>
   )

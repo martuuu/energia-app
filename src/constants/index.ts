@@ -6,6 +6,7 @@ export const SPORT_CATEGORIES = {
   SWIMMING: 'swimming',
   CYCLING: 'cycling',
   TRIATHLON: 'triathlon',
+  FUNCTIONAL: 'functional',
 } as const
 
 export const SPORT_LABELS = {
@@ -13,6 +14,7 @@ export const SPORT_LABELS = {
   [SPORT_CATEGORIES.SWIMMING]: 'Natación',
   [SPORT_CATEGORIES.CYCLING]: 'Ciclismo',
   [SPORT_CATEGORIES.TRIATHLON]: 'Triatlón',
+  [SPORT_CATEGORIES.FUNCTIONAL]: 'Funcional',
 } as const
 
 export const SPORT_ICONS = {
@@ -20,6 +22,7 @@ export const SPORT_ICONS = {
   [SPORT_CATEGORIES.SWIMMING]: '🏊‍♂️',
   [SPORT_CATEGORIES.CYCLING]: '🚴‍♂️',
   [SPORT_CATEGORIES.TRIATHLON]: '🏆',
+  [SPORT_CATEGORIES.FUNCTIONAL]: '💪',
 } as const
 
 export const MEMBERSHIP_TYPES = {
